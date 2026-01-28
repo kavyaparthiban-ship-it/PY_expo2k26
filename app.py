@@ -18,12 +18,22 @@ client = Client(TWILIO_SID, TWILIO_AUTH)
 # ---------------- CONFIG ----------------
 st.set_page_config(page_title="FARMIO", layout="centered")
 
-# ---------------- LANGUAGE DATA ----------------
+# ---------------- LANGUAGE DATA (14 LANGUAGES) ----------------
 languages = {
     "English": {"welcome": "Welcome to FARMIO", "farmer": "Farmer", "consumer": "Consumer"},
     "Tamil": {"welcome": "FARMIO-க்கு வரவேற்கிறோம்", "farmer": "விவசாயி", "consumer": "நுகர்வோர்"},
     "Hindi": {"welcome": "FARMIO में आपका स्वागत है", "farmer": "किसान", "consumer": "उपभोक्ता"},
     "Telugu": {"welcome": "FARMIO కి స్వాగతం", "farmer": "రైతు", "consumer": "వినియోగదారు"},
+    "Malayalam": {"welcome": "FARMIOയിലേക്ക് സ്വാഗതം", "farmer": "കർഷകൻ", "consumer": "ഉപഭോക്താവ്"},
+    "Kannada": {"welcome": "FARMIO ಗೆ ಸ್ವಾಗತ", "farmer": "ರೈತ", "consumer": "ಗ್ರಾಹಕ"},
+    "Urdu": {"welcome": "FARMIO میں خوش آمدید", "farmer": "کسان", "consumer": "صارف"},
+    "Odia": {"welcome": "FARMIO କୁ ସ୍ୱାଗତ", "farmer": "ଚାଷୀ", "consumer": "ଉପଭୋକ୍ତା"},
+    "Assamese": {"welcome": "FARMIO লৈ স্বাগতম", "farmer": "কৃষক", "consumer": "গ্ৰাহক"},
+    "Punjabi": {"welcome": "FARMIO ਵਿੱਚ ਤੁਹਾਡਾ ਸਵਾਗਤ ਹੈ", "farmer": "ਕਿਸਾਨ", "consumer": "ਖਪਤਕਾਰ"},
+    "Gujarati": {"welcome": "FARMIO માં આપનું સ્વાગત છે", "farmer": "ખેડૂત", "consumer": "ગ્રાહક"},
+    "Marathi": {"welcome": "FARMIO मध्ये आपले स्वागत आहे", "farmer": "शेतकरी", "consumer": "ग्राहक"},
+    "Bengali": {"welcome": "FARMIO তে আপনাকে স্বাগতম", "farmer": "কৃষক", "consumer": "ভোক্তা"},
+    "Bhojpuri": {"welcome": "FARMIO में राउर स्वागत बा", "farmer": "किसान", "consumer": "उपभोक्ता"}
 }
 
 # ---------------- SESSION STATE ----------------
@@ -53,12 +63,13 @@ if st.session_state.page == "splash":
 elif st.session_state.page == "language":
     st.title("Select Your Language")
     lang = st.selectbox("Choose Language", list(languages.keys()))
+
     if st.button("Continue"):
         st.session_state.language = lang
         st.session_state.page = "user_type"
         st.rerun()
 
-# ---------------- USER TYPE ----------------
+# ---------------- USER TYPE SELECTION ----------------
 elif st.session_state.page == "user_type":
     text = languages[st.session_state.language]
     st.title(text["welcome"])
@@ -125,7 +136,3 @@ elif st.session_state.page == "consumer":
             st.success("Details Submitted Successfully ✅")
         else:
             st.error("Please fill all fields")
-
-
-
-
